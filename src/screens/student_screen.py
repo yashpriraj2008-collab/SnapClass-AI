@@ -69,19 +69,7 @@ def student_dashboard():
 
 
         stats = stats_map.get(sid,{"total":0, "attended": 0} )
-        # Per-file fix: ensure this dark button's text is visible
-        st.markdown(
-            """
-            <style>
-            /* Unenroll button text should always be white */
-            div[data-testid*="stButton"] > button {
-                color: #ffffff !important;
-                font-weight: 600 !important;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
+
 
         def unenroll_button():
             if st.button("Unenroll from tihs course", type='tertiary', width='stretch', icon=':material/delete_forever:', key=f"unenroll_{sid}"):

@@ -67,17 +67,7 @@ def teacher_dashboard():
             st.session_state.current_teacher_tab = 'take_attendance'
             st.rerun()
 
-    # Per-file fix: ensure teacher nav button text is always visible
-    st.markdown(
-        """
-        <style>
-        .stButton > button {
-            color: #ffffff !important;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+
 
     with tab2:
         type2 = "primary" if st.session_state.current_teacher_tab == 'manage_subjects' else "tertiary"

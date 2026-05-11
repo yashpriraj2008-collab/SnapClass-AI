@@ -1,20 +1,68 @@
 import streamlit as st
+
+
 def subject_card(name, code, section, stats=None, footer_callback=None):
     html = f"""
-        <div style="background:#ffffff; border-left: 8px solid #f72585; padding:25px; border-radius: 20px; border: 1px solid rgba(26,26,46,0.25); margin-bottom:20px; color:#1a1a2e;">
-        <h3 style="margin:0; color: #1a1a2e; font-size: 1.5rem; font-weight:900 ">{name}</h3>
-        <p style="color:#1a1a2e; margin:10px 0; opacity:0.85;">Code : <span style="background:#E0E3FF; color:#4361ee; padding:2px 8px; border-radius:5px; font-weight:700;">{code} </span> | Section : {section}</p>
-        
-        """
-    
+        <div style="
+            background: #ffffff;
+            border: 1px solid rgba(229,231,235,1);
+            box-shadow: 0 10px 25px rgba(31,41,55,0.06);
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 18px;
+            color: var(--snap-text);
+        ">
+        <div style="
+            border-left: 8px solid rgba(255,79,163,1);
+            padding-left: 18px;
+        ">
+            <h3 style="
+                margin:0;
+                color: var(--snap-text);
+                font-size: 1.35rem;
+                font-weight: 750;
+                line-height: 1.2;
+            ">{name}</h3>
+
+            <p style="color: var(--snap-text); margin:10px 0 0 0; opacity:0.9; font-weight: 600;">
+                Code :
+                <span style="
+                    background: rgba(224,227,255,1);
+                    color: var(--snap-primary);
+                    padding: 2px 8px;
+                    border-radius: 8px;
+                    font-weight: 800;
+                ">{code}</span>
+                &nbsp;|&nbsp; Section : {section}
+            </p>
+
+    """
+
     if stats:
-        html+= """
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        html += """
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
         """
         for icon, label, value in stats:
-            html+= f'<div style="background: rgba(247,37,133,0.08); padding:5px 12px; border-radius:12px; font-size:0.95rem; color:#1a1a2e; font-weight:600">{icon} <b style="color:#1a1a2e">{value}</b> {label} </div>'
-        
-        html+= "</div>"
+            html += f"""
+                <div style="
+                    background: rgba(255,79,163,0.09);
+                    padding: 7px 12px;
+                    border-radius: 14px;
+                    font-size: 0.95rem;
+                    color: var(--snap-text);
+                    font-weight: 650;
+                    border: 1px solid rgba(255,79,163,0.12);
+                ">
+                    {icon} <b style="color: var(--snap-text); font-weight: 850;">{value}</b> {label}
+                </div>
+            """
+
+        html += "</div>"
+
+    html += """
+        </div>
+        </div>
+    """
 
     st.markdown(html, unsafe_allow_html=True)
 

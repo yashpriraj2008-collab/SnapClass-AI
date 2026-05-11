@@ -1,145 +1,190 @@
 import streamlit as st
 
 
-
 def style_background_home():
-
-    st.markdown("""
+    st.markdown(
+        """
         <style>
+            .stApp {
+                /* subtle purple accent wash instead of solid blocks */
+                background: var(--snap-bg) !important;
+            }
+            .stApp div[data-testid="stColumn"]{
+                background-color: var(--snap-surface) !important;
+                padding: 2.25rem !important;
+                border-radius: 1.25rem !important;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-                .stApp {
-                    background: #5865F2 !important;
-                }
-
-                .stApp div[data-testid="stColumn"]{
-                    background-color:#E0E3FF !important;
-                    padding:2.5rem !important;
-                    border-radius: 5rem !important;
-                    }
-        </style>  
-
-                """
-            ,unsafe_allow_html=True)
-    
 
 def style_background_dashboard():
-
-    st.markdown("""
+    st.markdown(
+        """
         <style>
+            .stApp {
+                background: var(--snap-bg) !important;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-                .stApp {
-                    background: #E0E3FF !important;
-                }
-
-        </style>  
-
-                """
-            ,unsafe_allow_html=True)
-    
-
-    
 
 def style_base_layout():
-# asdasd
-    st.markdown("""
+    st.markdown(
+        """
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-                
-         /* Hide Top Bar of streamlit */
-                
-            #MainMenu, footer, header {
-                visibility: hidden;
-            }
-                
-            .block-container {
-                padding-top:1.5rem !important;    
-            }
+        :root{
+            --snap-bg: #F5F7FF;
+            --snap-primary: #5B6CFF;
+            --snap-secondary: #FF4FA3;
 
-            h1 {
-                font-family: 'Climate Crisis', sans-serif !important;
-                font-size: 3.5rem !important;
-                line-height:1.1 !important;
-                margin-bottom:0rem !important;
-                color: #1a1a2e !important;
-            }
-                
+            --snap-text: #1F2937;
+            --snap-muted: #6B7280;
 
-            h2 {
-                font-family: 'Climate Crisis', sans-serif !important;
-                font-size: 2rem !important;
-                line-height:0.9 !important;
-                margin-bottom:0rem !important;
-                color: #1a1a2e !important;
-            }
-                
-            h3, h4, p {
-                font-family: 'Outfit', sans-serif;
-                color: #1a1a2e !important;
-            }
+            --snap-surface: #FFFFFF;
+            --snap-border: #E5E7EB;
 
-            /* Ensure Streamlit header text color */
-            div[data-testid="stHeader"],
-            div[data-testid="stSubheader"] {
-                color: #1a1a2e !important;
-            }
+            --snap-shadow: 0 10px 25px rgba(31, 41, 55, 0.08);
+            --snap-radius: 16px;
 
+            /* soft modern gradients (very subtle) */
+            --snap-grad: linear-gradient(135deg, rgba(91,108,255,0.12) 0%, rgba(255,79,163,0.10) 100%);
+            --snap-btn-grad: linear-gradient(180deg, rgba(91,108,255,1) 0%, rgba(91,108,255,0.94) 100%);
+            --snap-focus: 0 0 0 3px rgba(91,108,255,0.25);
+        }
 
-            /* Streamlit heading wrappers (fix visibility/contrast) */
-            div[data-testid="stHeader"] span,
-            div[data-testid="stSubheader"] span {
-                color: #1a1a2e !important;
-                font-weight: 800 !important;
-            }
-                
+        /* Hide Streamlit chrome */
+        #MainMenu, footer, header {
+            visibility: hidden;
+        }
 
-            button{
-                border-radius: 1.5rem !important;
-                background-color: #5865F2 !important;
-                color: white !important;
-                padding: 10px 20px !important;
-                border: none !important;
-                transition: transform 0.25s ease-in-out !important;
-                }
+        /* Global layout paddings */
+        .block-container{
+            padding-top: 1.5rem !important;
+            color: var(--snap-text) !important;
+        }
 
-            button[kind="secondary"]{
-                border-radius: 1.5rem !important;
-                background-color: #f72585 !important;
-                color: white !important;
-                padding: 10px 20px !important;
-                border: none !important;
-                transition: transform 0.25s ease-in-out !important;
-            }
+        /* Typography */
+        body, .stMarkdown, .stText, .stSubheader, .stHeader, .stTitle{
+            color: var(--snap-text) !important;
+            font-family: 'Outfit', sans-serif !important;
+        }
 
-            /* Ensure button icons inherit visible color */
-            button .stMarkdown, button .material-icons-outlined, button span, button svg {
-                color: inherit !important;
-                fill: currentColor !important;
-            }
+        h1 {
+            font-family: 'Climate Crisis', sans-serif !important;
+            font-size: 3.1rem !important;
+            line-height: 1.05 !important;
+            margin-bottom: 0rem !important;
+            color: var(--snap-text) !important;
+            font-weight: 700 !important; /* avoid ultra-bold overlap */
+        }
 
-            button[kind="tertiary"]{
-                border-radius: 1.5rem !important;
-                background-color: black !important;
-                color: white !important;
-                padding: 10px 20px !important;
-                border: none !important;
-                transition: transform 0.25s ease-in-out !important;
-                }
+        h2 {
+            font-family: 'Climate Crisis', sans-serif !important;
+            font-size: 2rem !important;
+            line-height: 1.05 !important;
+            margin-bottom: 0rem !important;
+            color: var(--snap-text) !important;
+            font-weight: 650 !important;
+        }
 
-            button:hover{
-                transform :scale(1.05)
-            }
+        h3, h4, p {
+            font-family: 'Outfit', sans-serif;
+            color: var(--snap-text) !important;
+        }
 
-            /* General text contrast on light cards/containers */
-            .stMarkdown, .stText, .stSubheader, .stHeader, .stTitle {
-                color: #1a1a2e !important;
-            }
+        /* Streamlit header/subheader wrappers */
+        div[data-testid="stHeader"],
+        div[data-testid="stSubheader"] {
+            color: var(--snap-text) !important;
+        }
 
-            .block-container{
-                color: #1a1a2e !important;
-            }
-        </style>  
+        div[data-testid="stHeader"] span,
+        div[data-testid="stSubheader"] span {
+            color: var(--snap-text) !important;
+            font-weight: 700 !important;
+        }
 
-                """
-            ,unsafe_allow_html=True)
+        /* Buttons: override all kinds with readable contrast */
+        button[kind="primary"],
+        button[kind="secondary"],
+        button,
+        .stButton > button {
+            border-radius: 999px !important;
+            border: 1px solid rgba(91,108,255,0.15) !important;
+            padding: 10px 20px !important;
+            font-weight: 750 !important;
+            transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease !important;
+        }
+
+        button,
+        .stButton > button{
+            background: var(--snap-btn-grad) !important;
+            color: #ffffff !important;
+            box-shadow: 0 10px 20px rgba(91,108,255,0.15) !important;
+        }
+
+        button[kind="secondary"]{
+            background: #ffffff !important;
+            color: var(--snap-text) !important;
+            border: 1px solid var(--snap-border) !important;
+            box-shadow: 0 10px 20px rgba(31, 41, 55, 0.06) !important;
+        }
+
+        button[kind="secondary"]:hover{
+            filter: brightness(0.98) !important;
+        }
+
+        button[kind="tertiary"]{
+            background: rgba(91,108,255,0.08) !important;
+            color: var(--snap-primary) !important;
+            border: 1px solid rgba(91,108,255,0.25) !important;
+            box-shadow: none !important;
+        }
+
+        button:hover{
+            transform: scale(1.03) !important;
+        }
+
+        button:focus, button:focus-visible{
+            outline: none !important;
+            box-shadow: var(--snap-focus) !important;
+        }
+
+        /* Ensure icons/spans inside buttons match text color */
+        button span, button svg, button .stMarkdown {
+            color: inherit !important;
+            fill: currentColor !important;
+        }
+
+        /* Cards/surfaces in general */
+        [data-testid="stVerticalBlock"] > div,
+        .stContainer{
+            border-radius: var(--snap-radius) !important;
+        }
+
+        /* Dialog readability */
+        [data-testid="stDialog"]{
+            background: var(--snap-surface) !important;
+            color: var(--snap-text) !important;
+        }
+        [data-testid="stDialog"] *{
+            color: var(--snap-text) !important;
+        }
+
+        /* Toast: readable */
+        [data-testid="stToast"]{
+            background-color: rgba(31,41,55,0.92) !important;
+            color: #ffffff !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )

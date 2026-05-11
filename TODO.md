@@ -1,12 +1,10 @@
-## Text Visibility Fix (Dark/Light Color Clash)
+# TODO - SnapClass UI/UX styling refactor
 
-- [ ] Step 1: Add/replace global CSS in `app.py` with provided dark-on-light + white-on-dark rules.
-- [x] Step 2: Update student welcome text in `src/screens/student_screen.py` to use `.welcome-text` (via `st.markdown`).
-- [x] Step 3: Update teacher welcome text in `src/screens/teacher_screen.py` to use `.welcome-text` (via `st.markdown`).
-- [x] Step 4: Fix popup/dialog text styles globally (ensure `.stDialog p/h1/h2` are dark).
-- [x] Step 5: Fix nav buttons globally (primary/secondary) so text is always white.
-- [x] Step 6: Scan remaining project files for headings/subheaders/dialog text that might be invisible; patch to rely on global CSS.
-- [x] Step 7: Run quick sanity check by executing the app and verifying key screens.
-
-
+- [ ] Step 1: Create unified theme (CSS variables + utilities) in `src/ui/base_layout.py`
+- [ ] Step 2: Remove conflicting global CSS from `app.py`
+- [ ] Step 3: Remove per-render “Per-file fix” CSS blocks from `src/screens/student_screen.py` and `src/screens/teacher_screen.py`
+- [ ] Step 4: Update `src/components/subject_card.py` to use theme utilities (cards/typography/button readability)
+- [ ] Step 5: Update `src/components/header.py` and `src/components/footer.py` to remove hardcoded colors and align with theme
+- [ ] Step 6: Verify button text contrast + hover states + dialog/toast readability via quick app run
+- [ ] Step 7: Produce before/after summary and list modified files
 
